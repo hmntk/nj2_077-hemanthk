@@ -5,8 +5,6 @@ async function getMovieData() {
     let res = await fetch(`http://www.omdbapi.com/?t=${name}&apikey=2ae0967f`);
 
     var data = await res.json();
-
-    showWeatherData(data);
   } catch (error) {
     console.log("error", error);
   }
