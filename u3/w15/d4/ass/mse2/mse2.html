@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OMDB</title>
+    <style>
+      * {
+        font-family: monospace;
+      }
+      #header,
+      #form,
+      #container {
+        width: 30%;
+        margin: 1% auto;
+        padding: 1%;
+        background: rgb(209, 171, 245);
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+      }
+      #title {
+        font-weight: 900;
+        font-size: 50px;
+      }
+      #form {
+        flex-direction: row;
+      }
+      #form input {
+        width: 70%;
+        font-size: 25px;
+        border-radius: 15px;
+        background: rgb(232, 221, 241);
+        border: none;
+        margin: 0 1% 0 0;
+      }
+      #form button {
+        width: 29%;
+        /* font-size: 25px; */
+        border-radius: 15px;
+        border: none;
+        color: white;
+        background: black;
+      }
+      #flex {
+        display: flex;
+        flex-direction: row;
+      }
+      #divRight {
+        font-size: 15px;
+        margin-left: 1%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">
+      <span id="title">OMDB</span>
+      <span id="tag">The one stop place for info on your favourite movies</span>
+    </div>
+    <div id="form">
+      <input type="text" id="name" />
+      <button onclick="getMovieData()">Get Movie Data</button>
+    </div>
+    <div id="container" style="display: none"></div>
+  </body>
+  <script src="mse2.js"></script>
+</html>

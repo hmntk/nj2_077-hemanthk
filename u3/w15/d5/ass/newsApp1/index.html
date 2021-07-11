@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NewsOutlet</title>
+    <style>
+      #container {
+        width: 45%;
+        margin: auto;
+        /* padding: 1%; */
+        border-radius: 15px;
+      }
+      h1 {
+        color: white;
+        border-radius: 15px;
+        padding: 2% 1%;
+        background: black;
+        margin: 1%;
+      }
+      #newsBody {
+        /* background: black; */
+        border-radius: 15px;
+        /* padding: 2% 0 0.1% 0; */
+        margin: 3% 1%;
+      }
+      #newsBody > div {
+        width: 96%;
+        height: 175px;
+        background: white;
+        border-radius: 15px;
+        /* box-shadow: 1px 1px 5px 3px white; */
+        margin: 0 0 4%;
+        display: flex;
+      }
+      img {
+        width: 300px;
+        object-fit: contain;
+        border-radius: 15px;
+        margin-right: 25px;
+      }
+      #text {
+        height: 100%;
+        overflow: hidden;
+      }
+      h3,
+      p {
+        margin: 1.65%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h1>Top Headlines from India</h1>
+      <div id="newsBody"></div>
+    </div>
+  </body>
+</html>
+<script>
+  let newsBody = document.getElementById("newsBody");
+
+  var data;
+
+  async function main() {
+    data = await getNews();
+    console.log(data);
+    showNews();
+  }
+
+  main();
+
+  async function getNews() {
+    try {
+      let response = await fetch(
+        "https://newsapi.org/v2/top-headlines?country=in&apiKey=523b663878f44129b2b05a9bc0e343ad"
+      );
+      let data = await response.json();
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function showNews() {
+    for (let i = 0; i < 10; i++) {
+      let div = document.createElement("div");
+      div.innerHTML = `<img
+            src="${data.articles[i].urlToImage}"
+            alt=""
+          />
+          <div id="text">
+            <h3 id="title">
+              ${data.articles[i].title}
+            </h3>
+            <p>
+              ${data.articles[i].description}
+            </p>
+            <p id="source">
+              <a
+                href="${data.articles[i].url}"
+                target="_blank"
+                >${data.articles[i].source.name}</a
+              >
+            </p>
+          </div>`;
+      newsBody.appendChild(div);
+    }
+  }
+</script>

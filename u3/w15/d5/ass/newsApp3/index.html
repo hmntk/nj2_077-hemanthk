@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search & Pagination</title>
+    <style>
+      body {
+        width: 50%;
+        margin: auto;
+      }
+      #nav {
+        display: flex;
+        align-items: center;
+        /* flex-basis: 300px; */
+        margin: auto;
+        justify-content: space-between;
+        padding: 0 3%;
+        /* margin: 2%; */
+        background: chartreuse;
+      }
+      #container > div {
+        width: 96%;
+        height: 175px;
+        background: white;
+        border-radius: 15px;
+        /* box-shadow: 1px 1px 5px 3px white; */
+        margin: 0 0 4%;
+        display: flex;
+      }
+      img {
+        width: 300px;
+        object-fit: contain;
+        border-radius: 15px;
+        margin-right: 25px;
+      }
+      #text {
+        height: 100%;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="nav">
+      <h2>Search with keyword for the news you want</h2>
+      <div>
+        <input type="text" id="query" />
+        <button onclick="getNews()">Get News</button>
+      </div>
+    </nav>
+    <section>
+      <div id="container">
+        <h1 style="padding: 25% 35%; background: rgb(0, 0, 144, 0.5)">
+          Your news will come here
+        </h1>
+      </div>
+      <div id="butts"></div>
+    </section>
+  </body>
+</html>
+<script>
+  let container = document.getElementById("container");
+
+  var data;
+
+  async function getNews() {
+    let query = document.getElementById("query").value;
+    try {
+      let response = await fetch(
+        `https://newsapi.org/v2/top-headlines?q=${query}&apiKey=523b663878f44129b2b05a9bc0e343ad`
+      );
+      data = await response.json();
+
+      paginate();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function paginate() {
+    let ind = data.articles.length;
+    document.getElementById("butts").innerHTML = null;
+    for (let i = 0; i < 5; i++) {
+      let btn = document.createElement("button");
+      btn.innerHTML = i + 1;
+      btn.setAttribute("id", `${i}`);
+      btn.onclick = showNews;
+      document.getElementById("butts").append(btn);
+    }
+    showNews();
+  }
+
+  function showNews() {
+    container.innerHTML = null;
+    console.log(this.id);
+
+    let index = Number(this.id) + 1;
+    let dataSlice = data.articles.slice(index * 5 - 5, index * 5);
+
+    for (let i = 0; i < dataSlice.length; i++) {
+      let div = document.createElement("div");
+      div.innerHTML = `<img
+            src="${dataSlice[i].urlToImage}"
+            alt=""
+          />
+          <div id="text">
+            <h3 id="title">
+              ${dataSlice[i].title}
+            </h3>
+            <p>
+              ${dataSlice[i].description}
+            </p>
+            <p id="source">
+              <a
+                href="${dataSlice[i].url}"
+                target="_blank"
+                >${dataSlice[i].source.name}</a
+              >
+            </p>
+          </div>`;
+      container.appendChild(div);
+    }
+  }
+</script>
