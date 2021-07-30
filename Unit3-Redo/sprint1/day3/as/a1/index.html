@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StarWars</title>
+    <style>
+      body {
+        font-family: monospace;
+        background: black;
+        color: white;
+      }
+      body > h1 {
+        text-align: center;
+        font-size: 100px;
+        margin: 10px 0;
+        /* font-weight: 700; */
+      }
+      #right {
+        text-align: center;
+      }
+      #content {
+        display: flex;
+        width: 900px;
+        margin: auto;
+      }
+      #left {
+        width: 400px;
+        height: 300px;
+        margin: 10px;
+        /* padding: 5px; */
+        /* justify-content: center;
+        align-items: center; */
+        border-radius: 15px;
+        border: solid yellow 2px;
+      }
+      #left input {
+        width: 280px;
+        height: 25px;
+        border-radius: 10px;
+        margin: 50px;
+        font-family: monospace;
+        font-size: 20px;
+        font-weight: 800;
+      }
+      #right {
+        width: 400px;
+        height: 300px;
+        margin: 10px;
+        border-radius: 15px;
+        border: solid yellow 2px;
+      }
+      hr {
+        border: 1px solid yellow;
+        width: 75%;
+      }
+      #right h1 {
+        margin: 50px 0 0 0;
+      }
+      #right p {
+        font-size: 15px;
+      }
+      #charList {
+        width: 285px;
+        height: 200px;
+        overflow-y: scroll;
+
+        border-radius: 10px;
+        margin: -45px 50px 0 50px;
+      }
+      #charList::-webkit-scrollbar {
+        display: none;
+      }
+      #charList p {
+        padding: 5px 5px;
+        margin: 5px 0;
+        font-weight: 800;
+        color: black;
+        font-size: 20px;
+        background: cornsilk;
+      }
+      span {
+        width: 10px;
+        height: 10px;
+        background: green;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Star Wars !</h1>
+    <div id="content">
+      <div id="left">
+        <input
+          oninput="throttleSearch()"
+          type="text"
+          placeholder="Search"
+          id="query"
+        />
+        <div id="charList"></div>
+      </div>
+      <div id="right">
+        <h1>Search for any character you know</h1>
+        <p>
+          Well, if you are someone like me, head
+          <a
+            href="https://disney.fandom.com/wiki/Category:Star_Wars_characters"
+            target="_blank"
+            >here</a
+          >
+          for a list of characters
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="index.js"></script>
