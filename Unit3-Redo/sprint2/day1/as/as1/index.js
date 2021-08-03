@@ -55,8 +55,12 @@ function Login(e) {
           },
         }
       );
-      let { token } = await res1.json();
-      getMyProfile(JSON.parse(formdata).username, token);
+      let { token, error } = await res1.json();
+      if (!error) {
+        getMyProfile(JSON.parse(formdata).username, token);
+      } else {
+        alert("Wrong Credentials !");
+      }
     } catch (error) {
       console.log(error);
     }
