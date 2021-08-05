@@ -90,7 +90,8 @@ function getMyProfile(username, token) {
   }
   getData();
 }
-/*async function Search() {
+async function Search() {
+  console.log("triggered now");
   let query = document.getElementById("query").value;
   let res = await fetch(
     `http://api.serpstack.com/search?access_key=9a1cd2359e6a952c5675afd7a9a5f4b0&query=${query}`
@@ -98,21 +99,9 @@ function getMyProfile(username, token) {
   let { organic_results } = await res.json();
   console.log(organic_results);
 }
-*/
 
-async function Search() {
-  document.getElementById("body").style.display = "none";
-  document.getElementById("results").style.display = "block";
-  00;
-  try {
-    let query = document.getElementById("query").value;
-    document.getElementById("query2").setAttribute("value", `${query}`);
-    let res = await fetch("https://reqres.in/api/users?page=2");
-    let { data } = await res.json();
-    data.forEach(({ email, first_name, last_name, avatar }) => {
-      console.log(email, first_name, avatar);
-    });
-  } catch (error) {
-    console.log(error);
-  }
+function Search1() {
+  alert(123);
 }
+
+console.log(1);

@@ -72,21 +72,26 @@
         </form>
       </div>
     </div>
-    <div id="body" style="display: none">
+    <div id="body">
       <img
         src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
         alt="GOogle Logo"
       /><br />
       <div id="searchBox">
         <span class="material-icons-outlined">search</span>
-        <input type="text" placeholder="Search for .. " id="query" />
+        <input
+          oninput="Search1()"
+          type="text"
+          placeholder="Search for .. "
+          id="query"
+        />
         <span class="material-icons-outlined"> mic </span>
       </div>
       <div>
-        <input type="submit" onclick="Search()" value="Google Search" />
+        <input type="submit" value="Google Search" onclick="Search()" />
         <input type="submit" value="I'm feeling lucky" />
       </div>
     </div>
   </body>
 </html>
-<script src="index.js"></script>
+<script src="./index.js"></script>

@@ -31,10 +31,10 @@
       #searchBox {
         padding: 0.15% 0.5%;
         /* width: fit-content; */
-        width: 20%;
+        width: 30%;
         margin: auto;
         display: flex;
-        border: solid rgb(172, 172, 172) 1px;
+        border: solid rgb(220, 220, 220) 1px;
         border-radius: 15px;
         text-align: center;
         align-items: center;
@@ -43,7 +43,18 @@
       #searchBox input {
         border: none;
         width: 100%;
-        height: 45px;
+        height: 30px;
+      }
+      #searchBox button {
+        background: none;
+        border: none;
+      }
+      #buttons input {
+        background: rgb(248, 248, 248);
+        border: none;
+        padding: 12px 20px;
+        border-radius: 15px;
+        font-size: 15px;
       }
     </style>
   </head>
@@ -82,12 +93,20 @@
         <input type="text" placeholder="Search for .. " id="query" />
         <span class="material-icons-outlined"> mic </span>
       </div>
-      <div>
+      <div id="buttons">
         <input type="submit" onclick="Search()" value="Google Search" />
         <input type="submit" value="I'm feeling lucky" />
       </div>
     </div>
-    <div id="results"></div>
+    <div id="results" style="display: none">
+      <div id="searchBox">
+        <input type="text" placeholder="Search for .. " id="query query2" />
+        <button onclick="Search()" class="material-icons-outlined">
+          search
+        </button>
+        <button class="material-icons-outlined">mic</button>
+      </div>
+    </div>
   </body>
 </html>
 <script src="index.js"></script>
